@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Title: jwd.Modul3.Test12 Maven Webapp
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: Pera
+Implementation-Vendor-Id: ispit
+Build-Jdk: 1.8.0_121
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+

@@ -1,0 +1,98 @@
+<div ng-controller="pivaCTRL">
+<form>
+	<div class="form-group">
+		<label for="naziv">Naziv</label>
+		<input class="form-control" type="text" name="naziv" ng-model="novoPivo.naziv" placeholder="naziv">
+	</div>
+
+	<div class="form-group">
+			<label for="vrsta">Vrsta</label>
+			<select class="form-control" name="vrsta" ng-model="novoPivo.vrstaId">
+			<option ng-repeat="vrsta in vrstePiva" value={{vrsta.id}}>{{vrsta.naziv}}</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<label for="procenat">Procenat alkohola</label>
+		<input class="form-control" type="text" name="procenat" ng-model="novoPivo.procenatAlkohola" placeholder="Procenat alkohola">
+	</div>
+	<div class="form-group">
+		<label for="ibu">IBU</label>
+		<input class="form-control" type="text" name="ibu" ng-model="novoPivo.ibu" placeholder="IBU">
+	</div>
+
+	<div class="form-group">
+		<label for="kolicina">Količina na stanju</label>
+		<input class="form-control" type="text" name="kolicina" ng-model="novoPivo.naStanju" placeholder="Količina na stanju">
+	</div>
+	<div class="form-group">
+			<label for="pivara">Pivara</label>
+			<select class="form-control" name="pivara" ng-model="novoPivo.pivaraId">
+			<option ng-repeat="pivara in pivare" value={{pivara.id}}>{{pivara.naziv}}</option>
+		</select>
+	</div>
+	<button class="btn btn-primary" ng-if="!izmena" ng-click="addPivo()">Dodaj</button>
+	<button class="btn btn-primary" ng-if="izmena" ng-click="update()">Update</button>
+
+</form>
+<br/>
+<br/>
+<br/>
+<form>
+	<div class="form-group">
+		<label for="naziv">Naziv</label>
+		<input class="form-control" type="text" name="naziv" ng-model="trazenoPivo.naziv" placeholder="Naziv">
+	</div>
+	<div class="form-group">
+		<label for="minIbu">Minimalni IBU</label>
+		<input class="form-control" type="text" name="minIbu" ng-model="trazenoPivo.minIBU" placeholder="Minimalni IBU">
+	</div>
+	<div class="form-group">
+		<label for="maxIbu">Maksimalni IBU</label>
+		<input class="form-control" type="text" name="maxIbu" ng-model="trazenoPivo.maxIBU" placeholder="Maksimalni IBU">
+	</div>
+	<div class="form-group">
+			<label for="pivara">Naziv pivare</label>
+			<select class="form-control" name="pivara" ng-model="trazenoPivo.nazivPivare" placeholder="Naziv pivare">
+			<option ng-repeat="pivara in pivare">{{pivara.naziv}}</option>
+		</select>
+	</div>
+	<div class="btn-group pull-left"> 
+			<button class="btn btn-primary" ng-click="trazi()">Filtriraj</button>
+		 	<button class="btn btn-primary" ng-click="ponistiFilter()">Reset</button>
+	</div>
+</form>
+<br/>
+<br/>
+<br/>
+
+	<div class="btn-group pull-right"> 
+	    <button class="btn btn-primary" ng-click="changePage(-1)" ng-disabled="pageNum == 0">Prethodna</button>
+		<button class="btn btn-primary" ng-click="changePage(1)" ng-disabled="pageNum == totalPages - 1">Sledeća</button>
+	</div> 
+	<button class="btn btn-primary" ng-click="NulaNaSTanju()">Nestalo</button>
+	<table class="table table-striped">
+		<tr>
+			<th>Naziv</th>
+			<th>Vrsta</th>
+			<th>Procenat Alkohola</th>
+			<th>IBU</th>
+			<th>Količina na stanju</th>
+			<th>Pivara</th>
+			<th>Akcija</th>
+		</tr>
+		<tr ng-repeat="pivo in piva">
+			<td>{{pivo.naziv}}</td>
+			<td>{{pivo.vrstaNaziv}}</td>
+			<td>{{pivo.procenatAlkohola}}</td>
+			<td>{{pivo.ibu}}</td>
+			<td>{{pivo.naStanju}}</td>
+			<td>{{pivo.pivaraNaziv}}</td>
+			<td>
+				<button class="btn btn-danger" ng-click="obrisi(pivo.id)">Obriši</button>
+				<button class="btn btn-warning" ng-click="izmeniNaIstoj(pivo.id)">Izmeni</button>
+				<button class="btn btn-warning" ng-click="izmeniNaDrugojSTR(pivo.id)">Izmeni na drugoj strani</button>
+			</td>
+		</tr>
+	</table>
+	
+</div>
